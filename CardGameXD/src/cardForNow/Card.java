@@ -1,24 +1,39 @@
 package cardForNow;
 
 public class Card {
-
-	enum Cards{
-		
-		carta1, carta2, carta3, carta4, carta5, carta6, carta7, carta8, carta9;
-		
-		//aqui se cria o retorno do tipo das cartas pra usar (nome bosta mudar!!!!)
-		private static Cards[] cratas = Cards.values();
-		public static Cards getCards(int i) {
-			return cratas[i];
-		}
-	}
-		
 	
-	private final String back;
-	private final Cards frenteCarta;
+	// just add here 
+	final static String[] cards = {"carta1", "carta2", "carta3", "carta4", "carta5", "carta6", "carta7"
+			, "carta8", "carta9"};
+	/** 
+	 *  :-)
+	 */
+	
+	public final static int maxCards = cards.length;
+	
+	//mudat para imageIcon :(
+	private final String atrasCarta;
+	private final String frenteCarta;
+	
+	private boolean isUp = false;
+	//public String upFace;
+	
+	public Card(int frente) {
 		
-	public Card(Cards frente) {
-		this.frenteCarta = frente;
-		this.back = "back-of-the-cards.png"; // nome do arquivo seja la qual for...
+		this.frenteCarta = cards[frente] + ".png";
+		this.atrasCarta = "backTemp.png"; // nome do arquivo
+		
+	}
+	
+	public static int getMaxCards() {
+		return maxCards;
+	}
+
+	public String getUpFace() {
+		if (isUp == false) {
+			return this.atrasCarta;
+		}else {
+			return this.frenteCarta;
+		}
 	}
 }

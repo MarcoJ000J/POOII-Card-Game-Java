@@ -1,10 +1,13 @@
 package main;
 
+import cardForNow.GamePanel;
+
 public class Main {
 
 	public static void main(String[] args) {
 		
-		GamePanel novoJogo = new GamePanel();
+		//temporario enquanto não ha um menu para comçar o jogo
+		GamePanel novoJogo = new GamePanel(0); 
 		
 	}
 
