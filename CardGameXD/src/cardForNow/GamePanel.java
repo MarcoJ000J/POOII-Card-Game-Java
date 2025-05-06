@@ -9,6 +9,8 @@ public class GamePanel extends JFrame {
 	 * aplicar e pode dar uma profundidade maior ao jogo caso eu queira termina-lo. 
 	 * 
 	 * */
+	
+	
 	//tavez eu tire daqui
 	boolean jogoTerminado;
 	//nem é nescessario
@@ -20,10 +22,15 @@ public class GamePanel extends JFrame {
 	//quantidade de pares de cartas
 	int qtdCards; // int max = Card.Cards.cratas.length;
 	
+	//talvez?
+	int columns;
+	int rows = 2;
+	
 	public GamePanel(int difficulty) {
 		setTitle("A INCRIVEL XD Card Game");
 		setSize(1000,600);
 		
+		//tem que ser limitado a quantidade de cartas disponiveis, como fazer isso?
 		this.difficulty = difficulty;
 		gameSet();
 		
@@ -36,12 +43,9 @@ public class GamePanel extends JFrame {
 	//provavelmente melhor em outro lugar.
 	public void gameSet() {
 		
-		
-		
 		//preciso criar um baralho novo em toda partida nova?
 		Deck cartasNaMesa = new Deck(difficulty);
 		
-		
-		
+		columns = cartasNaMesa.cartas.size()/rows;
 	}
 }
