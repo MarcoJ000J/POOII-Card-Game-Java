@@ -6,8 +6,8 @@ import javax.swing.ImageIcon;
 
 public class Card {
 	// valores temporarios necessario mundanças
-	int cardWidth = 90;
-	int cardHeight = 128;
+	public int cardWidth = 90;
+	public int cardHeight = 128;
 
 	// just add here
 	// mudar para array?
@@ -41,7 +41,10 @@ public class Card {
 		
 		/* utilizado para setar a parte de tras da carta*/
 		//no futuro mudar para poder ser alterado pelo jogador(no menu?)
-		this.atrasCarta = new ImageIcon("res\\" + "backTemp" + ".png"); // nome do arquivo
+		Image tempBackImage = new ImageIcon("res\\" + "backTemp" + ".png").getImage();
+		
+		this.atrasCarta = new ImageIcon(
+				tempBackImage.getScaledInstance(cardWidth, cardHeight, java.awt.Image.SCALE_SMOOTH)); // nome do arquivo
 
 	}
 

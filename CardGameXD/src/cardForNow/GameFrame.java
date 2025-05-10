@@ -1,8 +1,17 @@
 package cardForNow;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class GameFrame extends JFrame {
 	
@@ -14,7 +23,10 @@ public class GameFrame extends JFrame {
 	
 	//tavez eu tire daqui
 	boolean jogoTerminado;
-	//nem é nescessario
+	
+	int attempts = 0;
+	
+	//nem é nescessario, mas eu quero (^._.^)ﾉ	
 	int difficulty = 0;
 	int maxDif = Card.getMaxCards() - 5; // maximum difficulty 
 	
@@ -25,6 +37,21 @@ public class GameFrame extends JFrame {
 	int columns;
 	int rows = 2;
 	
+	//aiai
+	JPanel boardPanel;
+	JPanel textPanel = new JPanel();
+	JLabel textLabel = new JLabel();
+	
+	//custom font, mudar daqui?
+	public Font fonte;
+	public void carregarFonte() throws IOException, FontFormatException {
+	    InputStream is = getClass().getResourceAsStream("/fonts/Pixel Lofi.otf");
+	    fonte = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(18f);
+	}
+	    
+	    
+	
+
 	public GameFrame(int setDifficulty) {
 		//mudar nome
 		setTitle("A INCRIVEL XD Card Game");
@@ -35,10 +62,14 @@ public class GameFrame extends JFrame {
 			this.difficulty = setDifficulty;
 		}
 		
-		gameCardSet();
-		
 		setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
+		
+		gameCardSet();
+		add(boardPanel, BorderLayout.CENTER); // me preocupa os bugs :(
+		
+		//hmmm
+		pack();
 		
 		setResizable(false);
 		setVisible(true);
@@ -49,7 +80,26 @@ public class GameFrame extends JFrame {
 		
 		//preciso criar um baralho novo em toda partida nova?
 		Deck cartasNaMesa = new Deck(difficulty);
-				
 		columns = cartasNaMesa.cartas.size()/rows;
+		
+		//criando a mesa e pondo as cartas nela como botões
+		boardPanel = new JPanel();
+		boardPanel.setLayout(new GridLayout(rows, columns));
+		for(int i = 0; i < cartasNaMesa.board.size(); i++) {
+			boardPanel.add(cartasNaMesa.board.get(i));
+		}
+		
+		boardPanel.setMaximumSize(new Dimension(cartasNaMesa.cartas.get(0).cardWidth * 2
+				, cartasNaMesa.cartas.get(0).cardHeight * 5));
+		
+		// mudar daqui? 
+		try {
+		    carregarFonte();
+		} catch (IOException | FontFormatException e) {
+		    e.printStackTrace();
+		}
+		
+		//pondo as tentativas na tela
+		textLabel.setFont(fonte);
 	}
 }
