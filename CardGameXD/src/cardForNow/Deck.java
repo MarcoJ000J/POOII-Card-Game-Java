@@ -3,36 +3,15 @@ package cardForNow;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Deck {
-	
-	//talvez mudar para array?
-	//Card[] cartas;
-	
+public class Deck {	
 	ArrayList<Card> cartas;
-;
+
 	int qtdCards;
 	
 	public Deck(int difficulty) {
-		
-		
-		
 		// quantidade de cartas relativa a dificuldade selecionada
 		// fazer ser modular por que eu posso :)
 		qtdCards = difficulty + 5;
-		
-		//int atual = 0;
-		/*for(int i = 0; i <= (qtdCards-1)*2;) {
-			
-			cartas = new Card[qtdCards*2];
-			
-			// aff
-			cartas[i++] = new Card(atual);
-			cartas[i++] = new Card(atual);
-					
-			System.out.println(cartass.size());
-
-			atual++;
-		}*/
 		
 		// a quantidade de cartas na mesa é em dobro;
 		cartas = new ArrayList<Card>();

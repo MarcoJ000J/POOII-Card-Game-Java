@@ -1,8 +1,10 @@
 package cardForNow;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 
-public class GamePanel extends JFrame {
+public class GameFrame extends JFrame {
 	
 	/*
 	 * criando as variaveis, de maneira modular, a dificuldade, apesar de nao ter sido uma exigencia, é facil de 
@@ -10,30 +12,32 @@ public class GamePanel extends JFrame {
 	 * 
 	 * */
 	
-	
 	//tavez eu tire daqui
 	boolean jogoTerminado;
 	//nem é nescessario
 	int difficulty = 0;
-	
-	//impedir algum erro
 	int maxDif = Card.getMaxCards() - 5; // maximum difficulty 
 	
 	//quantidade de pares de cartas
-	int qtdCards; // int max = Card.Cards.cratas.length;
+	int qtdCards;
 	
 	//talvez?
 	int columns;
 	int rows = 2;
 	
-	public GamePanel(int difficulty) {
+	public GameFrame(int setDifficulty) {
+		//mudar nome
 		setTitle("A INCRIVEL XD Card Game");
 		setSize(1000,600);
 		
-		//tem que ser limitado a quantidade de cartas disponiveis, como fazer isso?
-		this.difficulty = difficulty;
-		gameSet();
+		//tem que ser limitado a quantidade de cartas disponiveis, como fazer isso? qual erro por aqui?
+		if(setDifficulty <= maxDif) {
+			this.difficulty = setDifficulty;
+		}
 		
+		gameCardSet();
+		
+		setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		
 		setResizable(false);
@@ -41,11 +45,11 @@ public class GamePanel extends JFrame {
 	}
 	
 	//provavelmente melhor em outro lugar.
-	public void gameSet() {
+	public void gameCardSet() {
 		
 		//preciso criar um baralho novo em toda partida nova?
 		Deck cartasNaMesa = new Deck(difficulty);
-		
+				
 		columns = cartasNaMesa.cartas.size()/rows;
 	}
 }
