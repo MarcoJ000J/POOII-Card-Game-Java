@@ -42,6 +42,7 @@ public class Deck {
 			x.setPreferredSize(new Dimension(cartas.get(0).cardWidth
 					, cartas.get(0).cardHeight));
 			
+			//mudar? updateDEck faz isso.
 			x.setIcon(cartas.get(i).getUpFace());
 			
 			//why?
@@ -67,10 +68,21 @@ public class Deck {
 		}
 		
 		porDeckAMesa();
-		
-		//para testes
-		/*for(int i = 0; i < cartas.size();i++) {
-			System.out.println(cartas.get(i).nomeCarta);
-		}*/
+	}
+	
+	public void hideAllCards() {
+		for(Card carta : this.cartas) {
+			carta.isUp = false;
+			updateBoard();
+		}
+	}
+	
+	/*
+	 * atualiza os imageIcons dos botões no array de botões que vai para a tela
+	 * */
+	private void updateBoard() {
+		for(int i = 0; i < board.size(); i++) {
+			board.get(i).setIcon(cartas.get(i).getUpFace());
+		}
 	}
 }

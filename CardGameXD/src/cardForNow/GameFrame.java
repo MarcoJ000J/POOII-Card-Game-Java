@@ -5,10 +5,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,6 +26,7 @@ public class GameFrame extends JFrame {
 	
 	//tavez eu tire daqui
 	boolean jogoTerminado;
+	boolean jogoPronto;
 	
 	int attempts = 0;
 	
@@ -37,6 +41,9 @@ public class GameFrame extends JFrame {
 	int columns;
 	int rows = 2;
 	
+	// o timer para ver as cartas
+	Timer paraEsconderCartas;
+	
 	//aiai
 	JPanel boardPanel;
 	JPanel textPanel = new JPanel();
@@ -48,10 +55,7 @@ public class GameFrame extends JFrame {
 	    InputStream is = getClass().getResourceAsStream("/fonts/Pixel Lofi.otf");
 	    fonte = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(18f);
 	}
-	    
-	    
-	
-
+	   
 	public GameFrame(int setDifficulty) {
 		//mudar nome
 		setTitle("A INCRIVEL XD Card Game");
@@ -64,12 +68,13 @@ public class GameFrame extends JFrame {
 		
 		setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
-		
+				
 		gameCardSet();
-		add(boardPanel, BorderLayout.CENTER); // me preocupa os bugs :(
 		
 		//hmmm
 		pack();
+		
+		paraEsconderCartas.start();
 		
 		setResizable(false);
 		setVisible(true);
@@ -80,15 +85,14 @@ public class GameFrame extends JFrame {
 		
 		//preciso criar um baralho novo em toda partida nova?
 		Deck cartasNaMesa = new Deck(difficulty);
+		
 		columns = cartasNaMesa.cartas.size()/rows;
 		
 		//criando a mesa e pondo as cartas nela como botões
 		boardPanel = new JPanel();
 		boardPanel.setLayout(new GridLayout(rows, columns));
-		for(int i = 0; i < cartasNaMesa.board.size(); i++) {
-			boardPanel.add(cartasNaMesa.board.get(i));
-		}
-		
+		distribuirCartas(cartasNaMesa);
+
 		boardPanel.setMaximumSize(new Dimension(cartasNaMesa.cartas.get(0).cardWidth * 2
 				, cartasNaMesa.cartas.get(0).cardHeight * 5));
 		
@@ -101,5 +105,34 @@ public class GameFrame extends JFrame {
 		
 		//pondo as tentativas na tela
 		textLabel.setFont(fonte);
+		textLabel.setHorizontalAlignment(JLabel.LEFT);
+		textLabel.setText("Tentativas: " + Integer.toString(attempts));	
+		//porque não fica transparente?
+		textLabel.setOpaque(true);
+		
+		
+		//pondo as coisas na tela
+		this.add(boardPanel, BorderLayout.CENTER);
+		this.add(textLabel, BorderLayout.EAST);
+		
+		paraEsconderCartas = new Timer(1500, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cartasNaMesa.hideAllCards();
+			}
+		});
+		paraEsconderCartas.setRepeats(false);
+		jogoPronto = true;
+		
+		distribuirCartas(cartasNaMesa);
+	}
+	
+	/*
+	 * Usado para por os botões no painel, e nada mais, só para facilitar
+	 * */
+	private void distribuirCartas(Deck x) {
+		for(int i = 0; i < x.board.size(); i++) {
+			boardPanel.add(x.board.get(i));
+		}
 	}
 }

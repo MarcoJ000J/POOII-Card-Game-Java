@@ -23,8 +23,10 @@ public class Card {
 	private final ImageIcon atrasCarta;
 	private final ImageIcon frenteCarta;
 
-	/*Se for TRUE a parte vista é a frente da carta se FALSE a parte e tras*/
-	private boolean isUp = false;
+	/*
+	 * Se for TRUE a parte vista é a frente da carta se FALSE a parte e tras
+	 * */
+	public boolean isUp = true;
 
 	/*
 	 * Construtor da carta
@@ -41,7 +43,7 @@ public class Card {
 		
 		/* utilizado para setar a parte de tras da carta*/
 		//no futuro mudar para poder ser alterado pelo jogador(no menu?)
-		Image tempBackImage = new ImageIcon("res\\" + "backTemp" + ".png").getImage();
+		Image tempBackImage = new ImageIcon("res\\" + "back1" + ".png").getImage();
 		
 		this.atrasCarta = new ImageIcon(
 				tempBackImage.getScaledInstance(cardWidth, cardHeight, java.awt.Image.SCALE_SMOOTH)); // nome do arquivo
