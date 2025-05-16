@@ -14,8 +14,8 @@ public class Card {
 
 	// just add here
 	// mudar para array?
-	public final static String[] cards = { "carta1", "carta2", "carta3", "carta4", "carta5", "carta6", "carta7",
-			"carta8", "carta9" };
+	public final static String[] cards = { "frontTemp", "frontTemp2", "frontTemp3", "frontTemp4", "frontTemp5", 
+			"frontTemp6", "frontTemp7",	"frontTemp8", "frontTemp9" };
 
 	public final static int maxCards = cards.length;
 
@@ -40,14 +40,14 @@ public class Card {
 
 		// para poder escalonar pro tamanho que eu quiser :)
 		// getClass().getResourse(String) é necessario?
-		Image tempCardImag = new ImageIcon("res\\" + cards[frente] + ".jpg").getImage();
+		Image tempCardImag = new ImageIcon("res/frontCards\\" + cards[frente] + ".png").getImage();
 
 		this.frenteCarta = new ImageIcon(
 				tempCardImag.getScaledInstance(cardWidth, cardHeight, java.awt.Image.SCALE_SMOOTH));
 
 		/* utilizado para setar a parte de tras da carta */
 		// no futuro mudar para poder ser alterado pelo jogador(no menu?)
-		Image tempBackImage = new ImageIcon("res\\" + "back1" + ".png").getImage();
+		Image tempBackImage = new ImageIcon("res/backCards\\" + "back1" + ".png").getImage();
 		
 		// nome do arquivo
 		this.atrasCarta = new ImageIcon(
