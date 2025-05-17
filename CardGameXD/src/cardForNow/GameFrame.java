@@ -1,13 +1,22 @@
 package cardForNow;
 
+import main.BackgroundPanel;
+
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -60,24 +69,30 @@ public class GameFrame extends JFrame {
 		fonte = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(18f);
 	}
 
+	
+	//o painel com o background, principal, todo o resto vai nele
+	BackgroundPanel gamePanel;
+	
 	public GameFrame(int setDifficulty) {
 		// mudar nome
 		setTitle("A INCRIVEL XD Card Game");
 		setSize(1000, 600);
 
+		//instancia com o vaminho para a imagem de background
+		gamePanel = new BackgroundPanel("res\\background\\slaFundo.jpg");
+		
 		// tem que ser limitado a quantidade de cartas disponiveis, como fazer isso?
 		// qual erro por aqui?
 		if (setDifficulty <= maxDif) {
 			this.difficulty = setDifficulty;
 		}
-
-		setLayout(new BorderLayout());
+				
 		setLocationRelativeTo(null);
 
 		gameCardSet();
-
+	
 		// hmmm
-		pack();
+		//pack();
 
 		paraEsconderCartas.start();
 
@@ -87,7 +102,9 @@ public class GameFrame extends JFrame {
 
 	// provavelmente melhor em outro lugar.
 	public void gameCardSet() {
-
+		//mudar o layout para que as coisas fiquem no lugar certo
+		gamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+		
 		// preciso criar um baralho novo em toda partida nova?
 		Deck cartasNaMesa = new Deck(difficulty);
 
@@ -95,18 +112,31 @@ public class GameFrame extends JFrame {
 
 		// criando a mesa e pondo as cartas nela como botões
 		boardPanel = new JPanel();
-		boardPanel.setLayout(new GridLayout(rows, columns));
-		boardPanel.setMaximumSize(new Dimension(cartasNaMesa.cartas.get(0).cardWidth * rows,
-				cartasNaMesa.cartas.get(0).cardHeight * columns));
+		boardPanel.setLayout(new GridBagLayout());
+		boardPanel.setOpaque(false);
+
+		//criando os parametros para o layout
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.NONE; // não redimensiona o botão
+		gbc.anchor = GridBagConstraints.CENTER; // centraliza o conteúdo
+		gbc.insets = new Insets(5, 5, 5, 5); // espaçamento entre cartas
 
 		for (int i = 0; i < cartasNaMesa.board.size(); i++) {
-			boardPanel.add(cartasNaMesa.board.get(i));
+			int row = i / columns;
+		    int col = i % columns;
+
+		    gbc.gridx = col;
+		    gbc.gridy = row;
+		    
+			boardPanel.add(cartasNaMesa.board.get(i), gbc);
 		}
 
 		// mudar daqui?
-		/*função para carragar a fonte
+		/*
+		 * função para carragar a fonte
 		 * @trows IOException
-		 * @trows FontFormatException*/
+		 * @trows FontFormatException
+		 */
 		try {
 			carregarFonte();
 		} catch (IOException | FontFormatException e) {
@@ -115,14 +145,21 @@ public class GameFrame extends JFrame {
 
 		// pondo as tentativas na tela
 		textLabel.setFont(fonte);
+		textLabel.setForeground(Color.WHITE);//mudando a cor da fonte
 		textLabel.setHorizontalAlignment(JLabel.LEFT);
 		textLabel.setText("Tentativas: " + Integer.toString(attempts));
-		// porque não fica transparente?
-		textLabel.setOpaque(true);
+		textLabel.setOpaque(false); // para ficar transparente;
 
-		// pondo as coisas na tela
-		this.add(boardPanel, BorderLayout.CENTER);
-		this.add(textLabel, BorderLayout.EAST);
+		//pondo o texto na label de texto pra por na tela
+		textPanel.add(textLabel);		
+		textPanel.setOpaque(false);
+
+		// pondo as coisas no jogo
+		gamePanel.add(boardPanel);
+		gamePanel.add(textPanel);
+		
+		//pndo o jogo na tela
+		this.add(gamePanel);
 
 		paraEsconderCartas = new Timer(1500, new ActionListener() {
 			@Override
@@ -131,7 +168,8 @@ public class GameFrame extends JFrame {
 				jogoPronto = true;
 			}
 		});
+		
 		paraEsconderCartas.setRepeats(false);
-
+		
 	}
 }
