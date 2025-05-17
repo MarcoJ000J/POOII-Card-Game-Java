@@ -54,7 +54,9 @@ public class Deck {
 			x.setFocusable(false);
 
 			x.addActionListener(new ActionListener() {
-
+				
+				//vou precisar mudar
+				
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					if (!GameFrame.jogoPronto) {

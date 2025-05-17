@@ -101,6 +101,7 @@ public class GameFrame extends JFrame {
 	}
 
 	// provavelmente melhor em outro lugar.
+	//criar uma classe
 	public void gameCardSet() {
 		//mudar o layout para que as coisas fiquem no lugar certo
 		gamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
@@ -169,7 +170,6 @@ public class GameFrame extends JFrame {
 			}
 		});
 		
-		paraEsconderCartas.setRepeats(false);
-		
+		paraEsconderCartas.setRepeats(false);	
 	}
 }
