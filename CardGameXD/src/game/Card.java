@@ -1,4 +1,4 @@
-package cardForNow;
+package game;
 
 import java.awt.Image;
 

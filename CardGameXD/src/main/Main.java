@@ -1,6 +1,6 @@
 package main;
 
-import cardForNow.GameFrame;
+import game.GameFrame;
 
 public class Main {
 

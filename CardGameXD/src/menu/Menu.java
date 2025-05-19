@@ -1,11 +1,15 @@
-package main;
+package menu;
 
 import javax.swing.*;
 import java.awt.*;
 import dialogo.ControladorDialogo;
-import cardForNow.*;
+import game.*;
 import util.CarregadorImagem;
 
+/* 
+ * fazer aqui o menu pricipal, onde de começa o jogo novo (futuramente continuar um jogo antigo)
+ * sair do jogo e ver placar de lideres e onde vai se escolher a dificuldade 
+ * */	
 public class Menu extends JFrame {
 	public Menu () {
 
@@ -16,10 +20,12 @@ public class Menu extends JFrame {
 		setLayout(null);
 
 		//fundo 
-		JLabel fundo = new JLabel (CarregadorImagem.load("menu_background"));
+		//mudar @see BackgroundPanel
+		JLabel fundo = new JLabel (/* CarregadorImagem.load("menu_background")*/);
 		fundo.setBounds(0, 0, 1280, 720);
 		setContentPane(fundo);
 		fundo.setLayout(null);
+		
 		//fundo.setLayout(new BorderLayout());
 		//fundo.setLayout(new GridLayout(1, 1));
 		//fundo.setLayout(new FlowLayout());
@@ -30,16 +36,11 @@ public class Menu extends JFrame {
 
 		int margenX = 50, margemY = getHeight() - 220;
 		String[] nomes = {"Novo Jogo", "Continuar", "Configs" , "Sair"};
-		Jbutton [] botoes = new JButton (textos[i]);
-		for (int i=0; i<4; i++)
-
-
-
-
+		
+		//WTF? eu tentei.
+		for (int i=0; i<4; i++) {
+			JButton[] botoes;
+			//botoes = new JButton(nomes[i]);
+		};
 	}
-
-	/* 
-	 * fazer aqui o menu pricipal, onde de começa o jogo novo (futuramente continuar um jogo antigo)
-	 * sair do jogo e ver placar de lideres e onde vai se escolher a dificuldade 
-	 * */	
 }
