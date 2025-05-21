@@ -49,17 +49,20 @@ public class Deck {
 			x.setIcon(cartas.get(i).getUpFace());
 
 			x.setName(Integer.toString(i));
-
+			
+			//mudanças visuais no butão
+			x.setBorderPainted(false);
+			x.setContentAreaFilled(false);
+			
 			// why?
 			x.setFocusable(false);
 
 			x.addActionListener(new ActionListener() {
-				
 				//vou precisar mudar
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if (!GameFrame.jogoPronto) {
+					if (!CardPanel.jogoPronto) {
 						return;
 					} else {
 						JButton temp = (JButton) e.getSource();
@@ -71,8 +74,9 @@ public class Deck {
 								temp1 = temp;
 							} else if (temp2 == null) {
 								temp2 = temp;
-								GameFrame.attempts++;
-								GameFrame.textLabel.setText("Tentativas: " + Integer.toString(GameFrame.attempts));
+								CardPanel.attempts++;
+								CardPanel.textLabel.setText("Tentativas: " + 
+								Integer.toString(CardPanel.attempts));
 
 								// MUITO temporario, por favor deletar
 								temp1 = null;

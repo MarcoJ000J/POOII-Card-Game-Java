@@ -1,4 +1,4 @@
-package main;
+package util;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -12,13 +12,15 @@ public class BackgroundPanel extends JPanel {
      * @since 17/05/2025
 	 * A Class to generate the background for the Frames
 	 */
-	private static final long serialVersionUID = 1L;
 	
 	private Image backgroundImage;
 	
 	private int width = 1000;
 	private int height = 600;
 	
+	/*
+	 * Construtor que recebe o caminho da imagem de fundo
+	 */
     public BackgroundPanel(String imagePath) {
     	setMinimumSize(new Dimension(width, height));
     	

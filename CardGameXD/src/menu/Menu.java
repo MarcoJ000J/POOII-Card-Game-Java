@@ -2,17 +2,15 @@ package menu;
 
 import javax.swing.*;
 import java.awt.*;
-import dialogo.ControladorDialogo;
 import game.*;
-import util.CarregadorImagem;
 
 /* 
  * fazer aqui o menu pricipal, onde de começa o jogo novo (futuramente continuar um jogo antigo)
  * sair do jogo e ver placar de lideres e onde vai se escolher a dificuldade 
  * */	
 public class Menu extends JFrame {
+	//refazer pls @see BackgroundPanel
 	public Menu () {
-
 		super("Orv GAME");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(1280, 720);
