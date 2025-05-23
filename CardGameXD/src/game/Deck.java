@@ -22,13 +22,44 @@ public class Deck {
 		// quantidade de cartas relativa a dificuldade selecionada
 		// fazer ser modular por que eu posso :)
 		qtdCards = difficulty + 5;
+		
 
 		// a quantidade de cartas na mesa é em dobro;
 		cartas = new ArrayList<Card>();
+		
+		//para randomizar quais cartas aparecem!
+		Random random = new Random();
+		ArrayList<Integer> jaForam;
+		/*
+		 * Coloca as cartas no deck, selecionando as aleatoriamente para ter variedade!
+		 */
+		jaForam = new ArrayList<Integer>();
+		for (int i = 0; i < qtdCards;) {
+			int temp = random.nextInt(Card.getMaxCards());
+						
+			if(i == 0){
+				cartas.add(new Card(temp));
+				cartas.add(new Card(temp));
+				
+				jaForam.add(temp);
+				
+				i++;
+			}else {
+				boolean jaFoi = false;
+				for(int j = 0; j < jaForam.size(); j++) {
+					if(jaForam.get(j) == temp) {
+						jaFoi = true;
+					}
+				}if(!jaFoi) {
+						cartas.add(new Card(temp));
+						cartas.add(new Card(temp));
+						
+						jaForam.add(temp);
+						
+						i++;	
+					}
+			}
 
-		for (int i = 0; i < qtdCards; i++) {
-			cartas.add(new Card(i));
-			cartas.add(new Card(i));
 		}
 
 		// auto embaralha as cartas para por na mesa
@@ -86,11 +117,7 @@ public class Deck {
 							cartas.get(index).isUp = true;
 
 							updateBoard();
-						} /*
-							 * else { cartas.get(index).isUp = false; GameFrame.attempts++;
-							 * GameFrame.textLabel.setText("Tentativas: " +
-							 * Integer.toString(GameFrame.attempts)); updateBoard(); }
-							 */
+						} 
 					}
 				}
 			});

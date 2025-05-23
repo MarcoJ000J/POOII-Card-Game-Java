@@ -14,7 +14,7 @@ public class Card {
 
 	// just add here
 	// mudar para array?
-	public final static String[] cards = { "frontTemp", "frontTemp2", "frontTemp3", "frontTemp4", "frontTemp5", 
+	private final static String[] cards = { "frontTemp", "frontTemp2", "frontTemp3", "frontTemp4", "frontTemp5", 
 			"frontTemp6", "frontTemp7",	"frontTemp8", "frontTemp9" };
 
 	public final static int maxCards = cards.length;
