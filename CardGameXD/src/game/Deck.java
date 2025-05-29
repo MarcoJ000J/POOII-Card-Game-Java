@@ -7,17 +7,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.Timer;
 
 public class Deck {
 	ArrayList<Card> cartas;
 	// as mesmas cartas só que botões
 	ArrayList<JButton> board;
 
-	JButton temp1;/* primeira catar escolhida a ser comparada */
-	JButton temp2;/* segunda carta escolhida a ser comparada */
+	JButton temp1 = null;/* primeira catar escolhida a ser comparada */
+	JButton temp2 = null;/* segunda carta escolhida a ser comparada */
 
-	int qtdCards;
+	static int qtdCards;
+	static int viradas;
 
+	Timer nah;
+	
 	public Deck(int difficulty) {
 		// quantidade de cartas relativa a dificuldade selecionada
 		// fazer ser modular por que eu posso :)
@@ -38,6 +42,7 @@ public class Deck {
 			int temp = random.nextInt(Card.getMaxCards());
 						
 			if(i == 0){
+				
 				cartas.add(new Card(temp));
 				cartas.add(new Card(temp));
 				
@@ -74,12 +79,13 @@ public class Deck {
 			JButton x = new JButton();
 
 			// (>_<)
-			x.setPreferredSize(new Dimension(cartas.get(0).cardWidth, cartas.get(0).cardHeight));
+			x.setPreferredSize(new Dimension(cartas.get(0).cardWidth,
+					cartas.get(0).cardHeight));
 
 			// mudar? updateDEck faz isso.
 			x.setIcon(cartas.get(i).getUpFace());
 
-			x.setName(Integer.toString(i));
+			x.setName(cartas.get(i).getCardId());
 			
 			//mudanças visuais no butão
 			x.setBorderPainted(false);
@@ -96,28 +102,64 @@ public class Deck {
 					if (!CardPanel.jogoPronto) {
 						return;
 					} else {
+						
 						JButton temp = (JButton) e.getSource();
 						int index = board.indexOf(temp);
-
+						
+						System.out.println(temp.getName());
+						
 						if (temp.getIcon() == cartas.get(index).atrasCarta) {
 
+							cartas.get(index).isUp = true;
+							
 							if (temp1 == null) {
+							
 								temp1 = temp;
+								index = board.indexOf(temp1);
+								
 							} else if (temp2 == null) {
 								temp2 = temp;
+								
 								CardPanel.attempts++;
-								CardPanel.textLabel.setText("Tentativas: " + 
-								Integer.toString(CardPanel.attempts));
-
-								// MUITO temporario, por favor deletar
-								temp1 = null;
-								temp2 = null;
+								
+								if(temp2.getName() == temp1.getName()) {
+									temp1 = null;
+									temp2 = null;
+									
+									CardPanel.hits++;
+									viradas++;
+									
+									CardPanel.upDateTextLabel();
+								}else {
+									CardPanel.jogoPronto = false;
+									nah = new Timer(1000, new ActionListener() {
+										
+										@Override
+										public void actionPerformed(ActionEvent e) {
+											CardPanel.jogoPronto = true;
+											int index = board.indexOf(temp1);
+											cartas.get(index).isUp = false;
+									
+											index = board.indexOf(temp2);
+											cartas.get(index).isUp = false;
+											
+											temp1 = null;
+											temp2 = null;
+																					
+											updateBoard();
+										}
+									});
+									nah.setRepeats(false);
+									nah.start();
+									
+									CardPanel.upDateTextLabel();
+								}
+								
 							}
-
-							cartas.get(index).isUp = true;
-
-							updateBoard();
 						} 
+						
+						updateBoard();
+						CardPanel.winwin();
 					}
 				}
 			});

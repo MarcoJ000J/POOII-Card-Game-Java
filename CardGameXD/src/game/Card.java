@@ -14,13 +14,12 @@ public class Card {
 
 	// just add here
 	// mudar para array?
-	private final static String[] cards = { "frontTemp", "frontTemp2", "frontTemp3", "frontTemp4", "frontTemp5", 
-			"frontTemp6", "frontTemp7",	"frontTemp8", "frontTemp9" };
+	private final static String[] cards = { "frontTemp", "frontTemp2", "frontTemp3", "frontTemp4", "frontTemp5",
+			"frontTemp6", "frontTemp7", "frontTemp8", "frontTemp9" };
 
 	public final static int maxCards = cards.length;
 
-	// valor para comparações das cartas
-	public final String nomeCarta;
+	public String nomeCarta;
 
 	public final ImageIcon atrasCarta;
 	public final ImageIcon frenteCarta;
@@ -48,10 +47,10 @@ public class Card {
 		/* utilizado para setar a parte de tras da carta */
 		// no futuro mudar para poder ser alterado pelo jogador(no menu?)
 		Image tempBackImage = new ImageIcon("res\\backCards\\" + "back1" + ".png").getImage();
-		
+
 		// nome do arquivo
 		this.atrasCarta = new ImageIcon(
-				tempBackImage.getScaledInstance(cardWidth, cardHeight, java.awt.Image.SCALE_SMOOTH)); 
+				tempBackImage.getScaledInstance(cardWidth, cardHeight, java.awt.Image.SCALE_SMOOTH));
 
 	}
 

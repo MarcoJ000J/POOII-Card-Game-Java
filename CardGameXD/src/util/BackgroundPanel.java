@@ -26,6 +26,15 @@ public class BackgroundPanel extends JPanel {
     	
     	backgroundImage = new ImageIcon(imagePath).getImage();
     }
+    
+    public BackgroundPanel(String imagePath, int widthD, int heightD) {
+    	setMinimumSize(new Dimension(widthD, heightD));
+    	
+    	this.width = widthD;
+    	this.height = heightD;
+    	
+    	backgroundImage = new ImageIcon(imagePath).getImage();
+    }
 
     @Override
     protected void paintComponent(Graphics g) {

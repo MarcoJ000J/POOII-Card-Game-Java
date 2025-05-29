@@ -1,7 +1,6 @@
 package game;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,13 +12,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import menu.winMenu;
 import util.BackgroundPanel;
 import util.FontLoader;
 
 public class CardPanel{
+	static winMenu nah;
+	
 	static boolean jogoPronto = false;
 
-	BackgroundPanel panel = new BackgroundPanel("res\\background\\slaFundo.jpg");
+	static BackgroundPanel panel = new BackgroundPanel("res\\background\\slaFundo.jpg");
 	
 	/*
 	 *cria a fonte que sera usada @see FontLoader 
@@ -38,6 +40,7 @@ public class CardPanel{
 	int difficulty;
 	
 	static int attempts = 0;
+	static int hits = 0;
 
 	// o timer para ver as cartas
 	Timer paraEsconderCartas;
@@ -71,8 +74,9 @@ public class CardPanel{
 		boardPanel.setLayout(new GridBagLayout());
 		boardPanel.setOpaque(false);
 
-		//criando os parametros para o layout
 		GridBagConstraints gbc = new GridBagConstraints();
+
+		//criando os parametros para o layout
 		gbc.fill = GridBagConstraints.HORIZONTAL; // não redimensiona o botão
 		gbc.anchor = GridBagConstraints.CENTER; // centraliza o conteúdo
 		gbc.insets = new Insets(15, 5, 15, 5); // espaçamento entre cartas
@@ -91,17 +95,18 @@ public class CardPanel{
 		textLabel.setFont(fonte);
 		textLabel.setForeground(Color.WHITE);//mudando a cor da fonte
 		textLabel.setHorizontalAlignment(JLabel.LEFT);
-		textLabel.setText("Tentativas: " + Integer.toString(attempts));
+		upDateTextLabel();
 		textLabel.setOpaque(false); // para ficar transparente;
 
 		//pondo o texto na label de texto pra por na tela
 		textPanel.add(textLabel);		
 		textPanel.setOpaque(false);
-
+		
 		// pondo as coisas no jogo... kkkkkkkkkkkkkkkkk oq eu fiz senhor?
 		panel.add(boardPanel, gbc);
 		panel.add(textPanel, gbc);
-
+		panel.add(nah = new winMenu(), gbc);
+		
 		paraEsconderCartas = new Timer(1500, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -111,5 +116,17 @@ public class CardPanel{
 		});
 		
 		paraEsconderCartas.setRepeats(false);	
+	}
+	
+	public static void upDateTextLabel() {
+		textLabel.setText("Tentativas: " + Integer.toString(attempts)
+		+ " Acertos: " + Integer.toString(hits));
+	}
+	
+	public static void winwin() {
+		
+		if(Deck.viradas == Deck.qtdCards) {
+			nah.setVisible(true);
+		}
 	}
 }

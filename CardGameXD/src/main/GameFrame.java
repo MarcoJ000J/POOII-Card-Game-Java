@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import game.BattlePanel;
 import game.Card;
 import game.CardPanel;
+import menu.winMenu;
 
 //talvez usar deltaTime para criar fpc e fazer animações
 //sera que deixo aqui?
@@ -50,7 +51,6 @@ public class GameFrame extends JFrame {
 		setLocationRelativeTo(null);
 		
 		add(new CardPanel(difficulty).getPanel());
-		//add(new BattlePanel(0,"gaga").getPanel());
 		
 		setResizable(false);
 		setVisible(true);

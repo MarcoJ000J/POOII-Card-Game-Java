@@ -7,6 +7,6 @@ public class Main {
 		 * temporario enquanto não ha um menu para começar o jogo
 		 */
 
-		new GameFrame(0);
+		new GameFrame(4);
 	}
 }
