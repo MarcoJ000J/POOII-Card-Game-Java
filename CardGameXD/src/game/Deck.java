@@ -96,11 +96,9 @@ public class Deck {
 					if (!CardPanel.jogoPronto) {
 						return;
 					} else {
-						
 						JButton temp = (JButton) e.getSource();
 						int index = board.indexOf(temp);
-						cartas.get(index).isUp = true;
-						
+
 						if (temp.getIcon() == cartas.get(index).atrasCarta) {
 
 							if (temp1 == null) {
@@ -108,34 +106,15 @@ public class Deck {
 							} else if (temp2 == null) {
 								temp2 = temp;
 								CardPanel.attempts++;
-								
-								//transoformar em modular
 								CardPanel.textLabel.setText("Tentativas: " + 
-										Integer.toString(CardPanel.attempts) + " Acertos: " 
-										+ Integer.toString(CardPanel.acertos));
-								
-								
-								if (temp1 == temp2) {
-									CardPanel.acertos++;
-									
-									//transoformar em modular
-									CardPanel.textLabel.setText("Tentativas: " + 
-											Integer.toString(CardPanel.attempts) + " Acertos: " 
-											+ Integer.toString(CardPanel.acertos));
-								}else {
-									index = board.indexOf(temp1);
-									cartas.get(index).isUp = false;
-									
-									index = board.indexOf(temp2);
-									cartas.get(index).isUp = false;
-								}							
-								
+								Integer.toString(CardPanel.attempts));
+
 								// MUITO temporario, por favor deletar
 								temp1 = null;
 								temp2 = null;
-
 							}
-							
+
+							cartas.get(index).isUp = true;
 
 							updateBoard();
 						} 

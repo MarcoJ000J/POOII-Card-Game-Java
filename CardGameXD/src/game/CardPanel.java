@@ -38,7 +38,6 @@ public class CardPanel{
 	int difficulty;
 	
 	static int attempts = 0;
-	static int acertos = 0;
 
 	// o timer para ver as cartas
 	Timer paraEsconderCartas;
@@ -92,8 +91,7 @@ public class CardPanel{
 		textLabel.setFont(fonte);
 		textLabel.setForeground(Color.WHITE);//mudando a cor da fonte
 		textLabel.setHorizontalAlignment(JLabel.LEFT);
-		textLabel.setText("Tentativas: " + Integer.toString(attempts) + " Acertos: " 
-				+ Integer.toString(acertos));
+		textLabel.setText("Tentativas: " + Integer.toString(attempts));
 		textLabel.setOpaque(false); // para ficar transparente;
 
 		//pondo o texto na label de texto pra por na tela
