@@ -12,16 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import menu.winMenu;
 import util.BackgroundPanel;
 import util.FontLoader;
 
 public class CardPanel{
-	static winMenu nah;
-	
 	static boolean jogoPronto = false;
 
-	static BackgroundPanel panel = new BackgroundPanel("res\\background\\slaFundo.jpg");
+	public BackgroundPanel panel = new BackgroundPanel("res\\background\\slaFundo.jpg");
 	
 	/*
 	 *cria a fonte que sera usada @see FontLoader 
@@ -39,14 +36,18 @@ public class CardPanel{
 	int rows = 2;
 	int difficulty;
 	
-	static int attempts = 0;
-	static int hits = 0;
+	public static int attempts;
+	public static int hits;
 
 	// o timer para ver as cartas
 	Timer paraEsconderCartas;
 	
+	public static GridBagConstraints gbc = new GridBagConstraints();
+
+	
 	public CardPanel(int difficulty) {
 		attempts = 0;
+		hits = 0;
 		this.difficulty = difficulty;
 		
 		gameCardSet();
@@ -73,8 +74,6 @@ public class CardPanel{
 		JPanel boardPanel = new JPanel();
 		boardPanel.setLayout(new GridBagLayout());
 		boardPanel.setOpaque(false);
-
-		GridBagConstraints gbc = new GridBagConstraints();
 
 		//criando os parametros para o layout
 		gbc.fill = GridBagConstraints.HORIZONTAL; // não redimensiona o botão
@@ -105,7 +104,6 @@ public class CardPanel{
 		// pondo as coisas no jogo... kkkkkkkkkkkkkkkkk oq eu fiz senhor?
 		panel.add(boardPanel, gbc);
 		panel.add(textPanel, gbc);
-		panel.add(nah = new winMenu(), gbc);
 		
 		paraEsconderCartas = new Timer(1500, new ActionListener() {
 			@Override
@@ -121,12 +119,5 @@ public class CardPanel{
 	public static void upDateTextLabel() {
 		textLabel.setText("Tentativas: " + Integer.toString(attempts)
 		+ " Acertos: " + Integer.toString(hits));
-	}
-	
-	public static void winwin() {
-		
-		if(Deck.viradas == Deck.qtdCards) {
-			nah.setVisible(true);
-		}
 	}
 }

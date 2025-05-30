@@ -9,6 +9,8 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.Timer;
 
+import main.GameFrame;
+
 public class Deck {
 	ArrayList<Card> cartas;
 	// as mesmas cartas só que botões
@@ -17,8 +19,8 @@ public class Deck {
 	JButton temp1 = null;/* primeira catar escolhida a ser comparada */
 	JButton temp2 = null;/* segunda carta escolhida a ser comparada */
 
-	static int qtdCards;
-	static int viradas;
+	public static int qtdCards;
+	public static int viradas;
 
 	Timer nah;
 	
@@ -72,7 +74,7 @@ public class Deck {
 	}
 
 	// mudar o nome?
-	public void porDeckAMesa() {
+	private void porDeckAMesa() {
 		board = new ArrayList<JButton>();
 
 		for (int i = 0; i < cartas.size(); i++) {
@@ -127,6 +129,8 @@ public class Deck {
 									CardPanel.hits++;
 									viradas++;
 									
+									winwin();
+									
 									CardPanel.upDateTextLabel();
 								}else {
 									CardPanel.jogoPronto = false;
@@ -150,18 +154,25 @@ public class Deck {
 									nah.setRepeats(false);
 									nah.start();
 									
+									
 									CardPanel.upDateTextLabel();
 								}
 								
 							}
-						} 
+						}
 						
 						updateBoard();
-						CardPanel.winwin();
 					}
 				}
 			});
 			board.add(x);
+		}
+	}
+	
+	
+	public static void winwin() {
+		if(Deck.viradas == Deck.qtdCards) {
+			GameFrame.jogoTerminado = true;
 		}
 	}
 

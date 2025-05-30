@@ -1,4 +1,4 @@
-package game;
+package old;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
