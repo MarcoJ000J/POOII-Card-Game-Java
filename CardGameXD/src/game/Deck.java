@@ -105,9 +105,7 @@ public class Deck {
 						
 						JButton temp = (JButton) e.getSource();
 						int index = board.indexOf(temp);
-						
-						System.out.println(temp.getName());
-						
+												
 						if (temp.getIcon() == cartas.get(index).atrasCarta) {
 
 							cartas.get(index).isUp = true;

@@ -1,16 +1,18 @@
 package main;
 
 import util.BackgroundPanel;
+import util.MusicPlayer;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
-import game.BattlePanel;
 import game.Card;
 import game.CardPanel;
 import menu.winMenu;
 
 //talvez usar deltaTime para criar fpc e fazer animações
-//sera que deixo aqui?
 public class GameFrame extends JFrame {
 
 	/*
@@ -21,10 +23,8 @@ public class GameFrame extends JFrame {
 	 * @author Marco AFR.Jr.
 	 */
 
-	// tavez eu tire daqui
 	boolean jogoTerminado;
 	
-	// nem é nescessario, mas eu quero (^._.^)ﾉ
 	int difficulty = 0;
 	int maxDif = Card.getMaxCards() - 5; // maximum difficulty
 
@@ -35,7 +35,6 @@ public class GameFrame extends JFrame {
 	BackgroundPanel gamePanel;
 	
 	public GameFrame(int setDifficulty) {
-		// mudar nome
 		setTitle("A INCRIVEL XD Card Game");
 		setSize(1000, 600);
 
@@ -54,6 +53,16 @@ public class GameFrame extends JFrame {
 		
 		setResizable(false);
 		setVisible(true);
+		
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+		        MusicPlayer.endBackground();
+		        dispose(); // fecha a janela manualmente
+		        System.exit(0); // garante encerramento completo
+		    }
+		});
 	}
 
 }
