@@ -73,7 +73,8 @@ Normalmente chamada de Main.java, Game.java, ou algo similar.
 
 Divirta-se com a Neko Arc!
 
-🖼️ Exemplos de Cartas
+## 🖼️ Exemplos de Cartas
+
 (Você pode adicionar imagens aqui usando Markdown se quiser)
 
 Carta	Visual
@@ -82,14 +83,16 @@ Carta	Visual
 3 - Neko Arc (Dark)
 4 - Neko Arc (Com Arma)
 
-👨‍🎓 Informações Acadêmicas
+## 👨‍🎓 Informações Acadêmicas
+
 Disciplina: Programação Orientada a Objetos II (POO2)
 
 Curso: Ciência da Computação
 
 Colaboradores: Marco Antonio (MarcoJ000J), Renan Milanez (RenanMilanez), Mahavii (Mahavii) e João Marcos (Russo).
 
-💡 Ideias Futuras
+## 💡 Ideias Futuras
+
 🔄 Sistema de trocas entre cartas
 
 🌐 Versão online multiplayer
