@@ -16,6 +16,7 @@ import javax.swing.Timer;
 
 import game.Card;
 import game.CardPanel;
+import game.Deck;
 import menu.WinMenu;
 import ui.RestartButton;
 
@@ -131,6 +132,7 @@ public class GameFrame extends JFrame {
 		if(game != null) {remove(game);}
 
 		jogoTerminado = false;
+		Deck.viradas = 0;
 				
 		game = new CardPanel(difficulty).getPanel();
 		

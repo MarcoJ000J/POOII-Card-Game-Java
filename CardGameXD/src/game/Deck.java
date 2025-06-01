@@ -19,8 +19,8 @@ public class Deck {
 	JButton temp1 = null;/* primeira catar escolhida a ser comparada */
 	JButton temp2 = null;/* segunda carta escolhida a ser comparada */
 
-	public static int qtdCards;
-	public static int viradas;
+	public static int qtdCards = 0;
+	public static int viradas = 0;
 
 	Timer nah;
 	
