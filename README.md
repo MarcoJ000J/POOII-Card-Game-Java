@@ -73,6 +73,8 @@ Normalmente chamada de Main.java, Game.java, ou algo similar.
 
 Divirta-se com a Neko Arc!
 
+---
+
 ## 🖼️ Exemplos de Cartas
 
 (Você pode adicionar imagens aqui usando Markdown se quiser)
@@ -83,6 +85,8 @@ Carta	Visual
 3 - Neko Arc (Dark)
 4 - Neko Arc (Com Arma)
 
+---
+
 ## 👨‍🎓 Informações Acadêmicas
 
 Disciplina: Programação Orientada a Objetos II (POO2)
@@ -90,6 +94,8 @@ Disciplina: Programação Orientada a Objetos II (POO2)
 Curso: Ciência da Computação
 
 Colaboradores: Marco Antonio (MarcoJ000J), Renan Milanez (RenanMilanez), Mahavii (Mahavii) e João Marcos (Russo).
+
+---
 
 ## 💡 Ideias Futuras
 
@@ -100,6 +106,8 @@ Colaboradores: Marco Antonio (MarcoJ000J), Renan Milanez (RenanMilanez), Mahavii
 🧠 Inteligência artificial para oponente CPU e combates com skills
 
 📱 Versão mobile com Flutter ou Android
+
+---
 
 📜 Licença
 Este projeto foi desenvolvido exclusivamente para fins educacionais, pessoais e testando nossas habilidades em Java.
