@@ -12,30 +12,36 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import main.GameFrame;
+import ui.RestartButton;
 import util.BackgroundPanel;
 import util.FontLoader;
 
+/*
+ * Classe do painel onde o  jogo acontece!
+ */
 public class CardPanel{
+	//responsavel por liberar as cartas para clicar
 	static boolean jogoPronto = false;
 
 	public BackgroundPanel panel = new BackgroundPanel("res\\background\\slaFundo.jpg");
 	
-	/*
-	 *cria a fonte que sera usada @see FontLoader 
-	 */
+	//cria a fonte que sera usada @see FontLoader  
 	Font fonte = new FontLoader().fonte;
 	
 	
-	// aiai
+	// cria o tabuleiro, o painel de texto e o texto que sera inserido
 	JPanel boardPanel;
 	JPanel textPanel = new JPanel();
 	static JLabel textLabel = new JLabel();
 	
-	// talvez?
+	// define a forma do tabuleiro
 	int columns;
 	int rows = 2;
 	int difficulty;
 	
+	
+	//tentativas e acertos.
 	public static int attempts;
 	public static int hits;
 
@@ -43,29 +49,39 @@ public class CardPanel{
 	Timer paraEsconderCartas;
 	
 	public static GridBagConstraints gbc = new GridBagConstraints();
-
 	
-	public CardPanel(int difficulty) {
+	public CardPanel(int difficulty, GameFrame frame) {
+		//setup the variables
 		attempts = 0;
 		hits = 0;
 		this.difficulty = difficulty;
 		
 		gameCardSet();
 		
+		
+		//configura o gridbagconstraints para o botao e colocaele no FRAME
+		// pra que nao fique torto :3
+		GameFrame.gbcM.gridx = 0;
+		GameFrame.gbcM.gridy = 0;
+		GameFrame.gbcM.gridwidth = 1;
+		GameFrame.gbcM.gridheight = 1;
+		GameFrame.gbcM.weightx = 0;
+		GameFrame.gbcM.weighty = 0;
+		
+		GameFrame.gbcM.anchor = GridBagConstraints.NORTHEAST;
+		GameFrame.gbcM.fill = GridBagConstraints.NONE;
+		RestartButton restart = new RestartButton(frame);
+		frame.add(restart, GameFrame.gbcM);
+		
 		paraEsconderCartas.start();
-	}
-	
-	public BackgroundPanel getPanel() {
-		return panel;
 	}
 	
 	// provavelmente melhor em outro lugar.
 	//criar uma classe
 	public void gameCardSet() {
-		//mudar os grid bag components... kkkkkk oq eu fiz?
 		panel.setLayout(new GridBagLayout());
 		
-		// preciso criar um baralho novo em toda partida nova?
+		// cria um baralho novo para cada partida
 		Deck cartasNaMesa = new Deck(difficulty);
 
 		columns = cartasNaMesa.cartas.size() / rows;
@@ -101,10 +117,13 @@ public class CardPanel{
 		textPanel.add(textLabel);		
 		textPanel.setOpaque(false);
 		
-		// pondo as coisas no jogo... kkkkkkkkkkkkkkkkk oq eu fiz senhor?
+		// pondo o tabuleiro e o texto no painel do jogo (que entao vai ser adcionado ao 
+		//   gameFrame)
 		panel.add(boardPanel, gbc);
 		panel.add(textPanel, gbc);
 		
+		
+		//timer que esconde as cartas no inicio do jogo (tirar?)
 		paraEsconderCartas = new Timer(1500, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -112,10 +131,12 @@ public class CardPanel{
 				jogoPronto = true;
 			}
 		});
-		
 		paraEsconderCartas.setRepeats(false);	
 	}
 	
+	/**
+	 * Função que atualiza o texto na tela;
+	 */
 	public static void upDateTextLabel() {
 		textLabel.setText("Tentativas: " + Integer.toString(attempts)
 		+ " Acertos: " + Integer.toString(hits));

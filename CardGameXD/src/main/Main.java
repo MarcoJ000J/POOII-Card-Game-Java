@@ -8,8 +8,9 @@ public class Main {
 		/*
 		 * temporario enquanto não ha um menu para começar o jogo
 		 */
-		new GameFrame(0);// 4 é o maximo
 		
+		new GameFrame(0);// 4 é o maximo
+				
 		new MusicPlayer().startBackgroundMusic();
 	}
 }
