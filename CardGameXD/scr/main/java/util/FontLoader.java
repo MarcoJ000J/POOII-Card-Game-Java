@@ -5,7 +5,6 @@ import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 /*
  * Classe responsavel por criar a fonte
  * @since 21/05/2025

@@ -10,9 +10,9 @@ import javax.swing.JButton;
 
 import main.GameFrame;
 
-/*
+/**
  * botao para restart (devia usar Button seria melhor)
- *
+ * @see  CardPanel
  */
 public class RestartButton extends JButton{
 
@@ -23,7 +23,8 @@ public class RestartButton extends JButton{
 		setMaximumSize(getPreferredSize());
 		setMinimumSize(getPreferredSize());
 
-		Image temp = new ImageIcon("res\\ui\\saveButton.png").getImage();
+		// o nome da imagem esta errado kkkkkk
+		Image temp = new ImageIcon("scr/main/resources/ui/saveButton.png").getImage();
 
 		setIcon(new ImageIcon(temp));
 

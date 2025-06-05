@@ -10,13 +10,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import game.Card;
-
-
-/*
+/**
  * Testes para a classe Card
  * @author Marco AFR.Jr.
  * @since 13/05/2025
- * @see Card*/
+ * @see Card
+ */
 class CardTest {
 
 	ArrayList<Card> Test = new ArrayList<>();

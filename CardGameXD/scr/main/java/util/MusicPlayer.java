@@ -15,7 +15,7 @@ public class MusicPlayer {
 
     public void startBackgroundMusic() {
         try {
-            File caminho = new File("res\\musicFiles\\Origins.wav");
+            File caminho = new File("scr/main/resources/musicFiles/Origins.wav");
 
             //cristo
             AudioInputStream audio = AudioSystem.getAudioInputStream(caminho);
@@ -37,7 +37,7 @@ public class MusicPlayer {
         }
     }
 
-    /*
+    /**
      * função respnsavel por terminar a musica, parando-a e liberando o espaço na memoria
      */
     public static void endBackgroundMusic() {

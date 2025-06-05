@@ -17,13 +17,14 @@ import util.BackgroundPanel;
  */
 public class Menu {
 
-	public BackgroundPanel painel = new BackgroundPanel("res\\backGround\\raw.png");
+	//por algum motivo os caminhos nao estoa funcionando corretamente
+	public BackgroundPanel painel = new BackgroundPanel("scr/main/resources/background/raw.png");
 
 	private GridBagConstraints gbc = new GridBagConstraints();
 
-	private Button start = new Button("res/ui/spr_banner_hud.png", "PLAY");
-	private Button placar = new Button("res/ui/spr_banner_hud.png", "PLACAR");
-	private Button sair = new Button("res/ui/spr_banner_hud.png", "SAIR");
+	private Button start = new Button("scr/main/resources/ui/spr_banner_hud.png", "PLAY");
+	private Button placar = new Button("scr/main/resources/ui/spr_banner_hud.png", "PLACAR");
+	private Button sair = new Button("scr/main/resources/ui/spr_banner_hud.png", "SAIR");
 
 	public Menu(GameFrame frame, BackgroundPanel framePanel) {
 		painel.setLayout(new GridBagLayout());

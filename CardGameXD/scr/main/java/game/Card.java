@@ -5,8 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * @author Marco AFR.JR.
- * The class of the cards
+ * @author Marco AFR.JR. The class of the cards
  */
 public class Card {
 	// valores temporarios necessario mundanças
@@ -40,14 +39,14 @@ public class Card {
 
 		// para poder escalonar pro tamanho que eu quiser :)
 		// getClass().getResourse(String) é necessario?
-		Image tempCardImag = new ImageIcon("res\\frontCards\\" + cards[frente] + ".png").getImage();
+		Image tempCardImag = new ImageIcon("scr/main/resources/frontCards/" + cards[frente] + ".png").getImage();
 
 		this.frenteCarta = new ImageIcon(
 				tempCardImag.getScaledInstance(cardWidth, cardHeight, java.awt.Image.SCALE_SMOOTH));
 
 		/* utilizado para setar a parte de tras da carta */
 		// no futuro mudar para poder ser alterado pelo jogador(no menu?)
-		Image tempBackImage = new ImageIcon("res\\backCards\\" + "back1" + ".png").getImage();
+		Image tempBackImage = new ImageIcon("scr/main/resources/backCards/" + "back1" + ".png").getImage();
 
 		// nome do arquivo
 		this.atrasCarta = new ImageIcon(

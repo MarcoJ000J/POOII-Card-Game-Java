@@ -12,7 +12,6 @@ public class BackgroundPanel extends JPanel {
      * @since 17/05/2025
 	 * A Class to generate the background for the Frames
 	 */
-
 	private Image backgroundImage;
 
 	private int width = 1000;

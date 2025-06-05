@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-
-/*
+/**
  * @since 17/05/2025
  *Classe para criar todas as entidades para os momentos de combate
  *

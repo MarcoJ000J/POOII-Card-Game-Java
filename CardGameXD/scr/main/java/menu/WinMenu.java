@@ -38,7 +38,7 @@ public class WinMenu extends JPanel{
 
 		setOpaque(false);
 
-		backgroundImage = new ImageIcon("res\\win.gif").getImage();
+		backgroundImage = new ImageIcon("scr/main/resources/win.gif").getImage();
 		setVisible(true);
 	}
 
