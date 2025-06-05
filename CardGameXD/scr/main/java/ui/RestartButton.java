@@ -16,7 +16,7 @@ import main.GameFrame;
  */
 public class RestartButton extends JButton{
 
-	public RestartButton(GameFrame frame) {
+	public RestartButton(GameFrame frame, int difficulty) {
 
 		setPreferredSize(new Dimension(50, 50));
 
@@ -35,7 +35,7 @@ public class RestartButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				frame.restartGame();
+				frame.restartGame(difficulty, frame);
 			}
 		});
 

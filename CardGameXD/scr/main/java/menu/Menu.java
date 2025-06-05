@@ -26,7 +26,10 @@ public class Menu {
 	private Button placar = new Button("scr/main/resources/ui/spr_banner_hud.png", "PLACAR");
 	private Button sair = new Button("scr/main/resources/ui/spr_banner_hud.png", "SAIR");
 
-	public Menu(GameFrame frame, BackgroundPanel framePanel) {
+	//define a quantidade de cartas (fazer o usuario poder escolher)
+	private int difficulty = 0;
+	
+	public Menu(GameFrame frame, BackgroundPanel framePanel) {		
 		painel.setLayout(new GridBagLayout());
 
 		painel.setSize(1000, 600);
@@ -37,7 +40,7 @@ public class Menu {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				frame.restartGame();
+				frame.restartGame(difficulty, frame);
 			}
 		});
 	}

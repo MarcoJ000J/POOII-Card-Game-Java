@@ -49,8 +49,8 @@ public class Button extends JButton{
 		ImageIcon a = new ImageIcon(image);
 		Image temp = new ImageIcon(image).getImage();
 
-		ImageIcon icon = new ImageIcon(temp.getScaledInstance(a.getIconWidth()+5,
-				a.getIconHeight()+30, java.awt.Image.SCALE_SMOOTH));
+		ImageIcon icon = new ImageIcon(temp.getScaledInstance(a.getIconWidth(),
+				a.getIconHeight(), java.awt.Image.SCALE_SMOOTH));
 
 		setMinimumSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
 

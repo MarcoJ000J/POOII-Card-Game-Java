@@ -6,9 +6,9 @@ public class Main {
 
 	public static void main(String[] args){
 		/*
-		 * temporario enquanto não ha um menu para começar o jogo
+		 * temporario ?
 		 */
-		new GameFrame(0);// 4 é o maximo
+		new GameFrame();
 		new MusicPlayer().startBackgroundMusic();
 	}
 }

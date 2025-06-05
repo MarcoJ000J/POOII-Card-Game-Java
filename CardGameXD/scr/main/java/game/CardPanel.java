@@ -45,11 +45,14 @@ public class CardPanel{
 	//tentativas e acertos.
 	public static int attempts;
 	public static int hits;
+	
+	public static String nome;
 
 	/**
 	 * Timer que esconde as cartas no inicio do jogo
 	 */
 	Timer paraEsconderCartas;
+	public static RestartButton restart;
 
 	public static GridBagConstraints gbc = new GridBagConstraints();
 
@@ -73,7 +76,7 @@ public class CardPanel{
 
 		GameFrame.gbcM.anchor = GridBagConstraints.NORTHEAST;
 		GameFrame.gbcM.fill = GridBagConstraints.NONE;
-		RestartButton restart = new RestartButton(frame);
+		restart = new RestartButton(frame, difficulty);
 		frame.add(restart, GameFrame.gbcM);
 
 		paraEsconderCartas.start();

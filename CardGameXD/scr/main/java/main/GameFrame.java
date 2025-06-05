@@ -36,7 +36,7 @@ public class GameFrame extends JFrame {
 	private BackgroundPanel tela = null;
 	Menu mainMenu = null;
 
-	int difficulty = 0;
+	private int difficulty = 0;
 	// maximum difficulty
 	int maxDif = Card.getMaxCards() - 5;
 
@@ -48,7 +48,7 @@ public class GameFrame extends JFrame {
 
 	public static GridBagConstraints gbcM = new GridBagConstraints();
 
-	public GameFrame(int setDifficulty) {
+	public GameFrame() {
 		//configuração da tela
 		super("A INCRIVEL Card Game XD");
 		setSize(1000, 600);
@@ -59,9 +59,9 @@ public class GameFrame extends JFrame {
 
 		//verifica se a dificuldade inserida é valida;
 		//mudar daqui
-		if (setDifficulty <= maxDif) {
-			this.difficulty = setDifficulty;
-		}
+		//if (setDifficulty <= maxDif) {
+		//	this.difficulty = setDifficulty;
+		//}
 
 		///configura o gridbagconstraints para o painel;
 		gbcM.gridwidth = 2;
@@ -97,7 +97,7 @@ public class GameFrame extends JFrame {
 	/**
 	 * Função responsavel por verificar a condição de fim de jogo.
 	 */
-	private void check(Container container) {
+	private void check(Container container, GameFrame frame) {
 		//se ja tem um timer, para ele
 	    if (endGameTimer != null && endGameTimer.isRunning()) {
 	        endGameTimer.stop();
@@ -111,7 +111,7 @@ public class GameFrame extends JFrame {
 							//para que o painel do winmenu mao fique esticado
 							CardPanel.gbc.fill = GridBagConstraints.CENTER;
 
-							WinMenu inEnd = new WinMenu();
+							WinMenu inEnd = new WinMenu(frame);
 
 							container.add(inEnd, CardPanel.gbc);
 
@@ -126,12 +126,41 @@ public class GameFrame extends JFrame {
 
 		endGameTimer.start();
 	}
+	
+	public void backToMenu(GameFrame frame) {
+		//para ter certeza que nao ha nada na tela
+		if(tela != null) {remove(tela);}
+		if(mainMenu != null) {mainMenu = null;}
+		//por algun motivo esse nao some
+		if(CardPanel.restart != null) {remove(CardPanel.restart);}
+		
+		
+
+		
+		///configura o gridbagconstraints para o painel;
+		gbcM.gridwidth = 2;
+		gbcM.gridheight = 2;
+		gbcM.weightx = 1.0;
+		gbcM.weighty = 1.0;
+
+		gbcM.fill = GridBagConstraints.BOTH;
+		
+		//reiniciando as variaveis
+		jogoTerminado = false;
+		Deck.viradas = 0;
+		
+		mainMenu = new Menu(frame, tela);
+		
+		frame.add(mainMenu.painel, gbcM);
+		frame.repaint();
+		frame.revalidate();
+	}
 
 	/**
 	 * Inicia / Reinicia o jogo usado por
 	 * @see Menu
 	 */
-	public void restartGame() {
+	public void restartGame(int difficulty, GameFrame frame) {
 		//remove "game" para nao ter infinitos paineis na tela;
 		if(tela != null) {remove(tela);}
 
@@ -144,9 +173,9 @@ public class GameFrame extends JFrame {
 		jogoTerminado = false;
 		Deck.viradas = 0;
 
-		tela = new CardPanel(difficulty, this).panel;
+		tela = new CardPanel(difficulty, frame).panel;
 
-		check(tela);
+		check(tela, this);
 
 		///configura o gridbagconstraints para o painel;
 		gbcM.gridwidth = 2;
