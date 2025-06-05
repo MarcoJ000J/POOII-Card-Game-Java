@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 
 /*
- * Classe responsavel por criar a fonte 
+ * Classe responsavel por criar a fonte
  * @since 21/05/2025
  */
 public class FontLoader{
@@ -18,7 +18,7 @@ public class FontLoader{
 		InputStream is = getClass().getResourceAsStream("/fonts/Pixel Lofi.otf");
 		fonte = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(18f);
 	}
-	
+
 	public FontLoader() {
 		/*
 		 * função para carragar a fonte

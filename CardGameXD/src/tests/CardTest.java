@@ -1,6 +1,8 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
@@ -16,28 +18,28 @@ import game.Card;
  * @since 13/05/2025
  * @see Card*/
 class CardTest {
-	
-	ArrayList<Card> Test = new ArrayList<Card>();
-	
+
+	ArrayList<Card> Test = new ArrayList<>();
+
 	@BeforeAll
 	void iniTest() {
 		Card generic = new Card(0);
 		assertEquals(90, generic.cardWidth);
 		assertEquals(128, generic.cardHeight);
-				
+
 		assertEquals(generic.isUp, true);
 	}
 
 	@Test
-	void testCard() {	
+	void testCard() {
 		for(int i = 0; i < Card.getMaxCards(); i++) {
 			Card temp = new Card(i);
-			
+
 			Test.add(temp);
-			
+
 			//corrigir
 			//assertEquals(Card.cards[i], temp.nomeCarta);
-			
+
 			assertNotNull(temp.atrasCarta);
 			assertNotNull(temp.frenteCarta);
 		}

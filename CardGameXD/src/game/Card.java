@@ -4,9 +4,10 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-/*
+/**
  * @author Marco AFR.JR.
- * The class of the cards*/
+ * The class of the cards
+ */
 public class Card {
 	// valores temporarios necessario mundanças
 	public int cardWidth = 90;
@@ -24,14 +25,14 @@ public class Card {
 	public final ImageIcon atrasCarta;
 	public final ImageIcon frenteCarta;
 
-	/*
-	 * Se for TRUE a parte vista é a frente da carta se FALSE a parte e tras
+	/**
+	 * Se for TRUE a parte vista é a frente da carta se FALSE a parte de tras
 	 */
 	public boolean isUp = true;
 
-	/*
+	/**
 	 * Construtor da carta
-	 * 
+	 *
 	 * @param int frente (index)
 	 */
 	public Card(int frente) {
@@ -63,14 +64,14 @@ public class Card {
 		return maxCards;
 	}
 
-	/*
+	/**
 	 * Responsavel por retornar a parte da carta que esta virada para cima
 	 * dependendo da variavel "isUp" it depends of @see isUp;
-	 * 
-	 * @return ImageIcon of the image tha the user shoud see
+	 *
+	 * @return ImageIcon of the image that the user shoud see
 	 */
 	public ImageIcon getUpFace() {
-		if (isUp == false) {
+		if (!isUp) {
 			return this.atrasCarta;
 		} else {
 			return this.frenteCarta;

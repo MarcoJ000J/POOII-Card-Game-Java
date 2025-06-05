@@ -11,6 +11,11 @@ import javax.swing.Timer;
 
 import main.GameFrame;
 
+/**
+ * Classe que representa um conjunto de cartas e os botoes aquivalentes a elas @see Card.java
+ * Usado por @see CardPanel
+ * para mostrar as cartas
+ */
 public class Deck {
 	ArrayList<Card> cartas;
 	// as mesmas cartas só que botões
@@ -23,47 +28,51 @@ public class Deck {
 	public static int viradas = 0;
 
 	Timer nah;
-	
+
+	/**
+	 * Construtor de Deck, recebe uma quantidade de cartas que depende de
+	 * @see difficulty
+	 */
 	public Deck(int difficulty) {
 		// quantidade de cartas relativa a dificuldade selecionada
 		// fazer ser modular por que eu posso :)
 		qtdCards = difficulty + 5;
-		
+
 
 		// a quantidade de cartas na mesa é em dobro;
-		cartas = new ArrayList<Card>();
-		
+		cartas = new ArrayList<>();
+
 		//para randomizar quais cartas aparecem!
 		Random random = new Random();
 		ArrayList<Integer> jaForam;
-		/*
+		/**
 		 * Coloca as cartas no deck, selecionando as aleatoriamente para ter variedade!
 		 */
-		jaForam = new ArrayList<Integer>();
+		jaForam = new ArrayList<>();
 		for (int i = 0; i < qtdCards;) {
 			int temp = random.nextInt(Card.getMaxCards());
-						
+
 			if(i == 0){
-				
+
 				cartas.add(new Card(temp));
 				cartas.add(new Card(temp));
-				
+
 				jaForam.add(temp);
-				
+
 				i++;
 			}else {
 				boolean jaFoi = false;
-				for(int j = 0; j < jaForam.size(); j++) {
-					if(jaForam.get(j) == temp) {
+				for (Integer element : jaForam) {
+					if(element == temp) {
 						jaFoi = true;
 					}
 				}if(!jaFoi) {
 						cartas.add(new Card(temp));
 						cartas.add(new Card(temp));
-						
+
 						jaForam.add(temp);
-						
-						i++;	
+
+						i++;
 					}
 			}
 
@@ -73,9 +82,12 @@ public class Deck {
 		embaralhar();
 	}
 
-	// mudar o nome?
+	/**
+	 * Função que efetivamente cria os botoes e seus action listeners
+	 * usado por @see Deck()
+	 */
 	private void porDeckAMesa() {
-		board = new ArrayList<JButton>();
+		board = new ArrayList<>();
 
 		for (int i = 0; i < cartas.size(); i++) {
 			JButton x = new JButton();
@@ -88,79 +100,80 @@ public class Deck {
 			x.setIcon(cartas.get(i).getUpFace());
 
 			x.setName(cartas.get(i).getCardId());
-			
+
 			//mudanças visuais no butão
 			x.setBorderPainted(false);
 			x.setContentAreaFilled(false);
-			
+
 			// why?
 			x.setFocusable(false);
 
 			x.addActionListener(new ActionListener() {
 				//vou precisar mudar
-				
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					if (!CardPanel.jogoPronto) {
+						//nao ativa o botao se jogo nao esta rolando
 						return;
 					} else {
-						
+
 						JButton temp = (JButton) e.getSource();
 						int index = board.indexOf(temp);
-												
+
 						if (temp.getIcon() == cartas.get(index).atrasCarta) {
 
 							cartas.get(index).isUp = true;
-							
+
 							if (temp1 == null) {
-							
+
 								temp1 = temp;
 								index = board.indexOf(temp1);
-								
+
 							} else if (temp2 == null) {
 								temp2 = temp;
-								
+
 								CardPanel.attempts++;
-								
+
 								if(temp2.getName() == temp1.getName()) {
 									temp1 = null;
 									temp2 = null;
-									
+
 									CardPanel.hits++;
 									viradas++;
-									
+
 									winwin();
-									
+
 									CardPanel.upDateTextLabel();
 								}else {
 									CardPanel.jogoPronto = false;
 									nah = new Timer(1000, new ActionListener() {
-										
+
 										@Override
 										public void actionPerformed(ActionEvent e) {
 											CardPanel.jogoPronto = true;
 											int index = board.indexOf(temp1);
 											cartas.get(index).isUp = false;
-									
+
 											index = board.indexOf(temp2);
 											cartas.get(index).isUp = false;
-											
+
 											temp1 = null;
 											temp2 = null;
-																					
+
 											updateBoard();
 										}
 									});
 									nah.setRepeats(false);
 									nah.start();
-									
-									
+
+
 									CardPanel.upDateTextLabel();
 								}
-								
+
 							}
 						}
-						
+
 						updateBoard();
 					}
 				}
@@ -168,16 +181,21 @@ public class Deck {
 			board.add(x);
 		}
 	}
-	
-	
+
+	/**
+	 * Função que verifica se o jogo acabou, usado quando um par de cartas é encontrado
+	 * @see poDeckAMesa()
+	 */
 	public static void winwin() {
 		if(Deck.viradas == Deck.qtdCards) {
 			GameFrame.jogoTerminado = true;
 		}
 	}
 
-	// nao sei se é o melhor nao / isso aqui ja poe as cartas nos botões automatico,
-	// será bom?
+	/**
+	 * Função resposavel por embaralhar as cartas e tambem distribuilas chamando
+	 *  @see porDeckAMesa()
+	 */
 	public void embaralhar() {
 		Random random = new Random();
 		int n = cartas.size();
@@ -195,6 +213,10 @@ public class Deck {
 		porDeckAMesa();
 	}
 
+	/**
+	 * Função que esconde todas as cartas, usada no começo da partida
+	 * @see CardPanel.paraEsconderCartas()
+	 */
 	public void hideAllCards() {
 		for (Card carta : this.cartas) {
 			carta.isUp = false;
