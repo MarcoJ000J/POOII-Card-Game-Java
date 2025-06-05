@@ -127,15 +127,17 @@ public class GameFrame extends JFrame {
 		endGameTimer.start();
 	}
 	
+	/**
+	 * Função responsavel por trazer o frame de volta ao menu
+	 * @see WinMenu
+	 * (por enquanto a unica forma de voltar)
+	 */
 	public void backToMenu(GameFrame frame) {
 		//para ter certeza que nao ha nada na tela
 		if(tela != null) {remove(tela);}
 		if(mainMenu != null) {mainMenu = null;}
 		//por algun motivo esse nao some
 		if(CardPanel.restart != null) {remove(CardPanel.restart);}
-		
-		
-
 		
 		///configura o gridbagconstraints para o painel;
 		gbcM.gridwidth = 2;

@@ -64,7 +64,6 @@ public class CardPanel{
 
 		gameCardSet();
 
-
 		//configura o gridbagconstraints para o botao e colocaele no FRAME
 		// pra que nao fique torto :3
 		GameFrame.gbcM.gridx = 0;
@@ -146,7 +145,6 @@ public class CardPanel{
 		});
 		paraEsconderCartas.setRepeats(false);
 	}
-
 	/**
 	 * Função responsavel por atualizar o texto na tela;
 	 */

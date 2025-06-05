@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
+
 import main.GameFrame;
 import ui.Button;
 import util.BackgroundPanel;
@@ -35,7 +37,22 @@ public class Menu {
 		painel.setSize(1000, 600);
 
 		setUpButton();
+		
+		Integer[] opcoes = {0, 1, 2, 3, 4};
+		
+		JComboBox<Integer> chooseDif = new JComboBox<>(opcoes);
 
+		painel.add(chooseDif, gbc);
+		//insere o actionlistener para o Combobox de selecao de dificuldade
+		chooseDif.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//muda a dificuldade dependendo do selecionado
+				difficulty = (int) chooseDif.getSelectedItem();
+				}
+		});
+		
+		//insere a action do botao de inicio
 		start.addActionListener(new ActionListener() {
 
 			@Override
