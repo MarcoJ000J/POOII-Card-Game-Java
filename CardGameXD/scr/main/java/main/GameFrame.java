@@ -16,6 +16,7 @@ import game.Card;
 import game.CardPanel;
 import game.Deck;
 import menu.*;
+import ui.RestartButton;
 import util.BackgroundPanel;
 import util.MusicPlayer;
 
@@ -35,6 +36,7 @@ public class GameFrame extends JFrame {
 	private BackgroundPanel tela = null;
 	Menu mainMenu = null;
 	Placar mainPlacar = null; 
+	RestartButton restart = null;
 
 	private int difficulty = 0;
 	// maximum difficulty
@@ -57,12 +59,6 @@ public class GameFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 
-		//verifica se a dificuldade inserida é valida;
-		//mudar daqui
-		//if (setDifficulty <= maxDif) {
-		//	this.difficulty = setDifficulty;
-		//}
-
 		///configura o gridbagconstraints para o painel;
 		gbcM.gridwidth = 2;
 		gbcM.gridheight = 2;
@@ -80,18 +76,22 @@ public class GameFrame extends JFrame {
 		addWindowListener(new WindowAdapter() {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
-		        MusicPlayer.endBackgroundMusic();
-
-		        if(endGameTimer != null) {
-		        	endGameTimer.stop();
-		        }
-
-		        dispose(); // fecha a janela manualmente
-		        System.exit(0); // garante encerramento completo
+		    	exit();
 		    }
 		});
 
 		setVisible(true);
+	}
+	
+	public void exit() {
+        MusicPlayer.endBackgroundMusic();
+
+        if(endGameTimer != null) {
+        	endGameTimer.stop();
+        }
+
+        dispose(); // fecha a janela manualmente
+        System.exit(0); // garante encerramento completo
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class GameFrame extends JFrame {
 		}
 		
 		//por algun motivo esse nao some
-		if(CardPanel.restart != null) {remove(CardPanel.restart);}
+		if(restart != null) {remove(restart);}
 		
 		///configura o gridbagconstraints para o painel;
 		gbcM.gridwidth = 2;
@@ -177,6 +177,20 @@ public class GameFrame extends JFrame {
 			remove(mainMenu.painel);
 			mainMenu = null;
 		}
+		
+		//configura o gridbagconstraints para o botao e colocaele no FRAME
+		// pra que nao fique torto :3
+		GameFrame.gbcM.gridx = 0;
+		GameFrame.gbcM.gridy = 0;
+		GameFrame.gbcM.gridwidth = 1;
+		GameFrame.gbcM.gridheight = 1;
+		GameFrame.gbcM.weightx = 0;
+		GameFrame.gbcM.weighty = 0;
+
+		GameFrame.gbcM.anchor = GridBagConstraints.NORTHEAST;
+		GameFrame.gbcM.fill = GridBagConstraints.NONE;
+		restart = new RestartButton(frame);
+		add(restart, GameFrame.gbcM);
 
 		//reiniciando as variaveis
 		jogoTerminado = false;

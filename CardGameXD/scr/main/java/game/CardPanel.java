@@ -70,20 +70,6 @@ public class CardPanel{
 
 		gameCardSet();
 
-		//configura o gridbagconstraints para o botao e colocaele no FRAME
-		// pra que nao fique torto :3
-		GameFrame.gbcM.gridx = 0;
-		GameFrame.gbcM.gridy = 0;
-		GameFrame.gbcM.gridwidth = 1;
-		GameFrame.gbcM.gridheight = 1;
-		GameFrame.gbcM.weightx = 0;
-		GameFrame.gbcM.weighty = 0;
-
-		GameFrame.gbcM.anchor = GridBagConstraints.NORTHEAST;
-		GameFrame.gbcM.fill = GridBagConstraints.NONE;
-		restart = new RestartButton(frame);
-		frame.add(restart, GameFrame.gbcM);
-
 		paraEsconderCartas.start();
 	}
 
