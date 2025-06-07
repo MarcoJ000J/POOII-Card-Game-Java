@@ -9,33 +9,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import main.GameFrame;
+import menu.Menu;
 
 /**
  * botao para restart (devia usar Button seria melhor)
  * @see  CardPanel
  */
-public class RestartButton extends JButton{
-
-	public RestartButton(GameFrame frame, int difficulty) {
-
-		setPreferredSize(new Dimension(50, 50));
-
-		setMaximumSize(getPreferredSize());
-		setMinimumSize(getPreferredSize());
-
-		// o nome da imagem esta errado kkkkkk
-		Image temp = new ImageIcon("scr/main/resources/ui/saveButton.png").getImage();
-
-		setIcon(new ImageIcon(temp));
-
-		//mudanças visuais no butão
-		setBorderPainted(false);
-		setContentAreaFilled(false);
-
+public class RestartButton extends Button{
+	static String image;
+	public RestartButton(GameFrame frame) {
+		super(image = "scr/main/resources/ui/saveButton.png");
+		
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				frame.restartGame(difficulty, frame);
+				frame.restartGame(Menu.difficulty, frame);
 			}
 		});
 

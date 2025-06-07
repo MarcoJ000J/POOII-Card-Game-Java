@@ -24,12 +24,12 @@ public class Menu {
 
 	private GridBagConstraints gbc = new GridBagConstraints();
 
-	private Button start = new Button("scr/main/resources/ui/spr_banner_hud.png", "PLAY");
-	private Button placar = new Button("scr/main/resources/ui/spr_banner_hud.png", "PLACAR");
-	private Button sair = new Button("scr/main/resources/ui/spr_banner_hud.png", "SAIR");
+	private Button start = new Button("scr/main/resources/ui/spr_banner_hud.png", "PLAY", 5, 30);
+	private Button placar = new Button("scr/main/resources/ui/spr_banner_hud.png", "PLACAR", 5, 30);
+	private Button sair = new Button("scr/main/resources/ui/spr_banner_hud.png", "SAIR",5, 30);
 
 	//define a quantidade de cartas (fazer o usuario poder escolher)
-	private int difficulty = 0;
+	public static int difficulty = 0;
 	
 	public Menu(GameFrame frame, BackgroundPanel framePanel) {		
 		painel.setLayout(new GridBagLayout());
