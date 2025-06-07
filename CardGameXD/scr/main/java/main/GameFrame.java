@@ -15,8 +15,7 @@ import javax.swing.WindowConstants;
 import game.Card;
 import game.CardPanel;
 import game.Deck;
-import menu.Menu;
-import menu.WinMenu;
+import menu.*;
 import util.BackgroundPanel;
 import util.MusicPlayer;
 
@@ -35,6 +34,7 @@ public class GameFrame extends JFrame {
 
 	private BackgroundPanel tela = null;
 	Menu mainMenu = null;
+	Placar mainPlacar = null; 
 
 	private int difficulty = 0;
 	// maximum difficulty
@@ -135,7 +135,14 @@ public class GameFrame extends JFrame {
 	public void backToMenu(GameFrame frame) {
 		//para ter certeza que nao ha nada na tela
 		if(tela != null) {remove(tela);}
+		
 		if(mainMenu != null) {mainMenu = null;}
+		
+		if(mainPlacar != null) {
+			remove(mainPlacar.painel);
+			mainPlacar = null;
+		}
+		
 		//por algun motivo esse nao some
 		if(CardPanel.restart != null) {remove(CardPanel.restart);}
 		
@@ -188,6 +195,37 @@ public class GameFrame extends JFrame {
 		gbcM.fill = GridBagConstraints.BOTH;
 		add(tela, gbcM);
 
+		revalidate();
+		repaint();
+	}
+	/**
+	 * Função responsavel por levar o game frame ate o painelde placar,
+	 *  tanto essa quanto as outras deveriam ter uma classe de controle responsavel
+	 *  e nao estar tudo no frame mas...
+	 */
+	public void showPlacar(GameFrame frame) {
+		//para ter certeza que nao ha nada na tela
+		if(tela != null) {remove(tela);}
+		
+		if(mainMenu != null) {
+			remove(mainMenu.painel);
+			mainMenu = null;
+		}
+		//por algun motivo esse nao some
+		if(CardPanel.restart != null) {remove(CardPanel.restart);}
+		
+		///configura o gridbagconstraints para o painel;
+		gbcM.gridwidth = 2;
+		gbcM.gridheight = 2;
+		gbcM.weightx = 1.0;
+		gbcM.weighty = 1.0;
+
+		gbcM.fill = GridBagConstraints.BOTH;
+		
+		mainPlacar = new Placar(this);
+		
+		add(mainPlacar.painel, gbcM);
+		
 		revalidate();
 		repaint();
 	}

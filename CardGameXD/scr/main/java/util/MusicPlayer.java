@@ -13,7 +13,7 @@ public class MusicPlayer {
 
     private static Clip backgroundClip;
 
-    public void startBackgroundMusic() {
+    public void startBackgroundMusic() throws IOException {
         try {
             String caminho = "/musicFiles/Origins.wav";
 

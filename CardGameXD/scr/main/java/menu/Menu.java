@@ -60,6 +60,14 @@ public class Menu {
 				frame.restartGame(difficulty, frame);
 			}
 		});
+		
+		placar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.showPlacar(frame);
+			}
+		});
 	}
 	/**
 	 * Função responsavel de por as botoes de seleção na tela

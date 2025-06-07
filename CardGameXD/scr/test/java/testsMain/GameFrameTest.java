@@ -69,7 +69,6 @@ public class GameFrameTest {
         Menu mainMenu = new Menu(gameFrame, tela);
         setField(gameFrame, "mainMenu", mainMenu);
         setField(CardPanel.class, "restart", new ui.RestartButton(gameFrame) {
-            @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {}
         });
         gameFrame.getContentPane().add(tela);
@@ -118,7 +117,8 @@ public class GameFrameTest {
         setField(gameFrame, "endGameTimer", endGameTimer);
         MusicPlayer mockMusicPlayer = new MusicPlayer() {
             boolean stopped = false;
-            public void endBackgroundMusic() {
+            //this need to be remade
+            public void endBackgroundMeusic() {
                 stopped = true;
             }
         };

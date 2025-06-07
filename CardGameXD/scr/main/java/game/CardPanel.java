@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
+import com.google.gson.annotations.SerializedName;
+
 import main.GameFrame;
 import ui.RestartButton;
 import util.BackgroundPanel;
@@ -30,7 +32,6 @@ public class CardPanel{
 	//cria a fonte que sera usada @see FontLoader
 	Font fonte = new FontLoader().fonte;
 
-
 	// cria o tabuleiro, o painel de texto e o texto que sera inserido
 	JPanel boardPanel;
 	JPanel textPanel = new JPanel();
@@ -39,14 +40,18 @@ public class CardPanel{
 	// define a forma do tabuleiro
 	int columns;
 	int rows = 2;
-	int difficulty;
+	static int difficulty;
 
 
 	//tentativas e acertos.
 	public static int attempts;
 	public static int hits;
 	
+	@SerializedName("Nome")
 	public static String nome;
+	
+	@SerializedName("Pontos")
+	public static int points;
 
 	/**
 	 * Timer que esconde as cartas no inicio do jogo
@@ -60,6 +65,7 @@ public class CardPanel{
 		//setup the variables
 		attempts = 0;
 		hits = 0;
+		points = 0;
 		this.difficulty = difficulty;
 
 		gameCardSet();
@@ -149,7 +155,15 @@ public class CardPanel{
 	 * Função responsavel por atualizar o texto na tela;
 	 */
 	public static void upDateTextLabel() {
+		calcPoints();
 		textLabel.setText("Tentativas: " + Integer.toString(attempts)
-		+ " Acertos: " + Integer.toString(hits));
+		+ " Acertos: " + Integer.toString(points));
 	}
+	/**
+	 * Calcula od pontos
+	 */
+	public static void calcPoints() {
+		points = ((500 + difficulty) * (hits)) - (attempts * 25);
+	}
+	
 }

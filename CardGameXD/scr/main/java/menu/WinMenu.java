@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 
 import game.CardPanel;
 import main.GameFrame;
+import save.GerenciadorSave;
+import save.PerfilSave;
 import ui.Button;
 import util.FontLoader;
 
@@ -39,7 +41,7 @@ public class WinMenu extends JPanel{
 		setMaximumSize(getPreferredSize());
 
 		//exibe a pontuação
-		JLabel pontuacao = new JLabel("Pontuação: " + Integer.toString(CardPanel.attempts));
+		JLabel pontuacao = new JLabel("Pontuação: " + Integer.toString(CardPanel.points));
 		pontuacao.setOpaque(false);
 		pontuacao.setForeground(Color.white);
 		pontuacao.setFont(fonte);
@@ -55,6 +57,10 @@ public class WinMenu extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				CardPanel.nome = getNome.getText();
 				System.out.println(CardPanel.nome);
+				
+				//botar a ação de slavar aqui
+				new GerenciadorSave(new PerfilSave(CardPanel.points, CardPanel.nome));
+				
 				frame.backToMenu(frame);
 			}
 		});
@@ -75,7 +81,7 @@ public class WinMenu extends JPanel{
 	}
 
     @Override
-    protected void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         // nsei que isso sinceramente, ver....
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
