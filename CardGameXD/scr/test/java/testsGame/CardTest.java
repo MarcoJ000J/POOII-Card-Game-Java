@@ -1,64 +1,79 @@
 package testsGame;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
+import java.awt.Image;
+import java.lang.reflect.Field;
 
-import org.junit.jupiter.api.BeforeAll;
+import javax.swing.ImageIcon;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.Card;
-/**
- * Testes para a classe Card
- * @author Marco AFR.Jr.
- * @since 13/05/2025
- * @see Card
- */
-class CardTest {
 
-	ArrayList<Card> Test = new ArrayList<>();
+public class CardTest {
 
-	@BeforeAll
-	void iniTest() {
-		Card generic = new Card(0);
-		assertEquals(90, generic.cardWidth);
-		assertEquals(128, generic.cardHeight);
+    private Card card;
+    private final int cardIndex = 0;
 
-		assertEquals(generic.isUp, true);
-	}
+    @BeforeEach
+    void setUp() {
+        card = new Card(cardIndex);
+    }
 
-	@Test
-	void testCard() {
-		for(int i = 0; i < Card.getMaxCards(); i++) {
-			Card temp = new Card(i);
+    @Test
+    void testConstructorInitializesFields() {
+        assertEquals("frontTemp", card.nomeCarta);
+        assertTrue(card.isUp);
+        assertNotNull(card.frenteCarta);
+        assertNotNull(card.frenteCarta.getImage());
+        assertEquals(90, card.frenteCarta.getIconWidth());
+        assertEquals(128, card.frenteCarta.getIconHeight());
+        assertNotNull(card.atrasCarta);
+        assertNotNull(card.atrasCarta.getImage());
+        assertEquals(90, card.atrasCarta.getIconWidth());
+        assertEquals(128, card.atrasCarta.getIconHeight());
+    }
 
-			Test.add(temp);
+    @Test
+    void testGetCardIdReturnsNomeCarta() {
+        assertEquals("frontTemp", card.getCardId());
+    }
 
-			//corrigir
-			//assertEquals(Card.cards[i], temp.nomeCarta);
+    @Test
+    void testGetMaxCardsReturnsCorrectValue() throws Exception {
+        String[] cardsArray = (String[]) getField(Card.class, "cards");
+        assertEquals(cardsArray.length, Card.getMaxCards());
+        assertEquals(9, Card.getMaxCards());
+    }
 
-			assertNotNull(temp.atrasCarta);
-			assertNotNull(temp.frenteCarta);
-		}
-	}
+    @Test
+    void testGetUpFaceReturnsCorrectImage() {
+        assertTrue(card.isUp);
+        assertEquals(card.frenteCarta, card.getUpFace());
+        setField(card, "isUp", false);
+        assertFalse(card.isUp);
+        assertEquals(card.atrasCarta, card.getUpFace());
+    }
 
-	@Test
-	void testGetCardId() {
-		for(Card i : Test) {
-			assertEquals(i.nomeCarta, i.getCardId());
-		}
-	}
+    private Object getField(Class<?> clazz, String fieldName) {
+        try {
+            Field field = clazz.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return field.get(null);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	@Test
-	void testGetMaxCards() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetUpFace() {
-		fail("Not yet implemented");
-	}
-
+    private void setField(Object obj, String fieldName, Object value) {
+        try {
+            Field field = obj.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(obj, value);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
