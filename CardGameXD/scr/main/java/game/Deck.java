@@ -108,33 +108,37 @@ public class Deck {
 			// why?
 			x.setFocusable(false);
 
+			//adiciona o action event das cartas
 			x.addActionListener(new ActionListener() {
-				//vou precisar mudar
-
+				
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					if (!CardPanel.jogoPronto) {
 						//nao ativa o botao se jogo nao esta rolando
 						return;
 					} else {
-
+						//pega qual é a carta
 						JButton temp = (JButton) e.getSource();
 						int index = board.indexOf(temp);
-
+						
+						//flipa a carta
 						if (temp.getIcon() == cartas.get(index).atrasCarta) {
 
 							cartas.get(index).isUp = true;
-
+							
+							//ve se é a primeira carta virada e se sim salva ela
 							if (temp1 == null) {
 
 								temp1 = temp;
 								index = board.indexOf(temp1);
 
-							} else if (temp2 == null) {
+							} 
+							//ve se é a segunda carta virada e se sim sava ela e depois compara
+							else if (temp2 == null) {
 								temp2 = temp;
 
 								CardPanel.attempts++;
-
+								//se as cartas foram iguais, mantem elas viradas e da ponto
 								if(temp2.getName() == temp1.getName()) {
 									temp1 = null;
 									temp2 = null;
@@ -142,10 +146,14 @@ public class Deck {
 									CardPanel.hits++;
 									viradas++;
 
+									//som
+									
 									winwin();
 
 									CardPanel.upDateTextLabel();
-								}else {
+								}
+								//se as cartas sao diferentes vira elas pra baixo denovo
+								else {
 									CardPanel.jogoPronto = false;
 									nah = new Timer(1000, new ActionListener() {
 
@@ -158,6 +166,8 @@ public class Deck {
 											index = board.indexOf(temp2);
 											cartas.get(index).isUp = false;
 
+											//som
+											
 											temp1 = null;
 											temp2 = null;
 
@@ -173,7 +183,6 @@ public class Deck {
 
 							}
 						}
-
 						updateBoard();
 					}
 				}
