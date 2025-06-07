@@ -23,7 +23,7 @@ public class BackgroundPanel extends JPanel {
     public BackgroundPanel(String imagePath) {
     	setMinimumSize(new Dimension(width, height));
 
-    	backgroundImage = new ImageIcon(imagePath).getImage();
+    	backgroundImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
     }
 
     public BackgroundPanel(String imagePath, int widthD, int heightD) {
@@ -32,7 +32,7 @@ public class BackgroundPanel extends JPanel {
     	this.width = widthD;
     	this.height = heightD;
 
-    	backgroundImage = new ImageIcon(imagePath).getImage();
+    	backgroundImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
     }
 
     @Override

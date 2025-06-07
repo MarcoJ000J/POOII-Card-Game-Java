@@ -16,9 +16,8 @@ import menu.Menu;
  * @see  CardPanel
  */
 public class RestartButton extends Button{
-	static String image;
 	public RestartButton(GameFrame frame) {
-		super(image = "scr/main/resources/ui/saveButton.png");
+		super("scr/main/resources/ui/saveButton.png");
 		
 		addActionListener(new ActionListener() {
 			@Override

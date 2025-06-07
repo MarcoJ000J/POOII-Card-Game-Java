@@ -15,10 +15,10 @@ public class MusicPlayer {
 
     public void startBackgroundMusic() {
         try {
-            File caminho = new File("scr/main/resources/musicFiles/Origins.wav");
+            String caminho = "/musicFiles/Origins.wav";
 
             //cristo
-            AudioInputStream audio = AudioSystem.getAudioInputStream(caminho);
+            AudioInputStream audio = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(caminho));
             backgroundClip = AudioSystem.getClip();
             backgroundClip.open(audio);
             backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);

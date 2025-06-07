@@ -25,7 +25,7 @@ public class CardPanel{
 	//responsavel por liberar as cartas para clicar
 	static boolean jogoPronto = false;
 
-	public BackgroundPanel panel = new BackgroundPanel("scr/main/resources/background/slaFundo.jpg");
+	public BackgroundPanel panel = new BackgroundPanel("/background/slaFundo.jpg");
 
 	//cria a fonte que sera usada @see FontLoader
 	Font fonte = new FontLoader().fonte;

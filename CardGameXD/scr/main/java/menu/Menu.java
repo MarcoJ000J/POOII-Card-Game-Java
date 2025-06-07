@@ -20,7 +20,7 @@ import util.BackgroundPanel;
 public class Menu {
 
 	//por algum motivo os caminhos nao estoa funcionando corretamente
-	public BackgroundPanel painel = new BackgroundPanel("scr/main/resources/background/raw.png");
+	public BackgroundPanel painel = new BackgroundPanel("/background/raw.png");
 
 	private GridBagConstraints gbc = new GridBagConstraints();
 

@@ -26,7 +26,7 @@ public class BattlePanel{
 	ArrayList<JButton> acoes = new ArrayList<>();
 
 	// setando o background
-	BackgroundPanel panel = new BackgroundPanel("res\\background\\slaFundo.jpg");
+	BackgroundPanel panel; //= new BackgroundPanel("res\\background\\slaFundo.jpg");
 
 	public BattlePanel(int nivel, String enemy) {
 		//mudar o layout para que as coisas fiquem no lugar certo
